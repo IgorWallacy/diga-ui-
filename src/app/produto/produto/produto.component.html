@@ -1,0 +1,44 @@
+<p-panel>
+    <button type="button" style="margin-left:20px;" (click)="exportarResende()" pButton label="Gerar Produtos Resende"></button>
+
+    <button type="button" style="margin-left:20px;" (click)="exportarVoltaRedonda()" pButton label="Gerar Produtos Volta Redonda"></button>
+<p-header >
+
+    <h1>Gere os produtos e depois clique em Exportar Produtos(CSV)</h1>
+
+  
+</p-header>
+
+<div style="margin-top:20px;">
+
+<p-table #dt [columns]="cols" [paginator]="true" [rows]="10" [value]="produtos">
+    <ng-template pTemplate="caption">
+        <div class="ui-helper-clearfix" style="text-align: left">
+            <button type="button" pButton icon="pi pi-file-o" iconPos="left" label="Exportar Produtos(CSV)" (click)="dt.exportCSV()" style="margin-right: 0.5em;"></button>
+            
+            
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-fp>
+        <tr>
+            <td>{{fp.codigo}}</td>
+            <td>{{fp.ean}}</td>
+            <td>{{fp.nome}}</td>
+            <td>{{fp.preco}}</td>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="summary" let-fp>
+    Total de  {{produtos.length}} produtos
+    </ng-template>
+
+</p-table>
+</div>
+</p-panel>
